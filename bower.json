@@ -1,0 +1,23 @@
+{
+  "name": "CodingTest",
+  "version": "0.0.1",
+  "description": "Quick coding test for Peapod.",
+  "main": "index.html",
+  "authors": [
+    "Zack Jordan"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Source/bower_components"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3"
+  }
+}
