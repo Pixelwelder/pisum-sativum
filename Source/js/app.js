@@ -5,8 +5,9 @@
 angular.module('employeeDirectory', [])
     .controller('DirectoryController', function($scope){
 
+        // TODO Obviously the model should be coming from elsewhere.
         // Make the model presentable.
-        var model = json
+        var model = json;
 
         // TODO This should be a service.
         $scope.model = json;
@@ -30,7 +31,8 @@ angular.module('employeeDirectory', [])
 				num = input;
 				ext = '';
 			}
-			
+
+            // Remove non-numeric and format.
 			num = num.replace(/\D/g, '');
 			num = num.replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, "($1) $2-$3");
 			
@@ -43,6 +45,7 @@ angular.module('employeeDirectory', [])
         return function(input){
             if (!input) return '';
 
+            // Remove any non-numeric stuff.
             var output = input.replace(/\D/g, '');
 
 			// Got a +4?

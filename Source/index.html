@@ -14,8 +14,12 @@
             <div ng-repeat="employee in model">
                 <h2 class="employee-name">{{employee.name}}</h2>
                 <p class="employee-email"><a href="mailto:{{employee.email}}">{{employee.email}}</a></p>
-                <p class="employee-address">{{employee.address.street}}<br/>{{employee.address.suite}}<br/>{{employee.address.city}}, {{employee.address.state}} {{employee.address.zipcode | zipcode}}</p>
-                <p class="employee-phone">{{employee.phone | phone}}</p> <!-- TODO Format -->
+                <p class="employee-address">
+					{{employee.address.street}}<br/>
+					{{employee.address.suite}}<br/>
+					{{employee.address.city}}, {{employee.address.state}} {{employee.address.zipcode | zipcode}}
+				</p>
+                <p class="employee-phone">{{employee.phone | phone}}</p>
                 <p class="employee-website"><a href="http://{{employee.website | website}}">{{employee.website | website}}</a></p>
             </div>
         </section>
