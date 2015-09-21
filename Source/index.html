@@ -11,13 +11,13 @@
     <body>
 
         <header>
-            <h1>Employee Directory</h1>
+            <h1>User Directory</h1>
         </header>
 
         <section class="container" ng-controller="DirectoryController">
             <div class="item-renderer minimized" ng-class="status" ng-repeat="employee in model" ng-cloak ng-click="toggle($event)">
                 <i class="min-phone fa fa-phone" ng-show="employee.phone"></i>
-                <div class="max-toggle"><i class="fa fa-plus-square" ng-click="toggle($event)"></i></div>
+                <div class="max-toggle"><i class="fa fa-plus-square"></i></div>
                 <ul class="fa-ul">
                     <li class="employee-name" ng-click="toggle($event)"><i class="fa fa-li fa-user"></i>{{::employee.name}} </li>
                     <li class="employee-email"><i class="fa fa-li fa-envelope"></i> <a href="mailto:{{::employee.email}}">{{::employee.email}}</a></li>

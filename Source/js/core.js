@@ -10,12 +10,8 @@ var lg = 768;
 function toggle($event){
 
     // Ignore clicks on the main item renderer if we're on desktop.
-    if (
-        ($($event.currentTarget).hasClass('item-renderer') && $(window).width() > lg) ||
-        (!$($event.currentTarget).hasClass('item-renderer') && $(window).width() <= lg)
-    ) return;
-
-    $target = $($event.currentTarget).closest('.item-renderer');
+    if (($($event.target).hasClass('item-renderer') && $(window).width() > lg)) return;
+    $target = $($event.currentTarget);
 
     // Toggle the minimized/maximized state, but take the multiple selection setting into account.
     if (!$target.hasClass('minimized')){
