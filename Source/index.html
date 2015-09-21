@@ -3,6 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <title>Employee Directory</title>
+
+        <!-- TODO Concatenate/minify CSS. -->
+        <link rel="stylesheet" type="text/css" href="css/app.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="screen">
     </head>
     <body>
 
@@ -11,8 +15,9 @@
         </header>
 
         <section class="container" ng-controller="DirectoryController">
-            <div ng-repeat="employee in model">
+            <div class="item-renderer minimized" ng-repeat="employee in model">
                 <h2 class="employee-name">{{employee.name}}</h2>
+                <i class="fa fa-phone"></i>
                 <p class="employee-email"><a href="mailto:{{employee.email}}">{{employee.email}}</a></p>
                 <p class="employee-address">
 					{{employee.address.street}}<br/>
@@ -28,8 +33,9 @@
 
         </footer>
 
-        <script src="js/vendor/jquery.min.js"></script>
-        <script src="js/vendor/angular.min.js"></script>
+        <!-- TODO Concatenate/minify JS. -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/angular.js"></script>
 
         <script src="js/model.js"></script>
         <script src="js/app.js"></script>

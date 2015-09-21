@@ -1,1 +1,19 @@
 /* CodingTest */
+
+// ItemRenderers
+.item-renderer {
+  &.minimized {
+
+    .employee-address {
+      display: none;
+    }
+
+    .employee-phone {
+      display: none;
+    }
+
+    .employee-website {
+      display: none;
+    }
+  }
+}

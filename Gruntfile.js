@@ -1,45 +1,77 @@
 module.exports = function(grunt) {
 	
+	// TODO Concatenation and uglification.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-
+		
+		// Variables.
+		config: {
+			src: 'Source',
+			dest: 'Deploy'
+		},
+		
+		clean: {
+			build: {
+				src: '<%= config.dest %>'
+			}
+		},
+		
 		copy: {
 			main: {
 				files: [
-					{
-						cwd: 'Source/',
-						src: ['**/*min.js', '!**/*sizzle*', '**/angular.js'],
-						dest: 'Deploy/js/vendor/',
+					{	// Copy JS.
+						cwd: '<%= config.src %>/',
+						src: [
+							'**/*min.js', '!**/*sizzle*', 
+							'**/angular.js', // TODO Remove for production.
+							'js/model.js' // TODO Remove.
+						],
+						dest: '<%= config.dest %>/js/',
 						expand: true,
 						flatten: true
 					},
-					{
-						cwd: 'Source/',
-						src: ['js/*'],
-						dest: 'Deploy/js',
-						expand: true,
-						flatten: true
-					},
-					{
-						cwd: 'Source/',
+					{	// Copy application HTML.
+						cwd: '<%= config.src %>/',
 						src: ['**/*.html'],
-						dest: 'Deploy/',
+						dest: '<%= config.dest %>/',
 						expand: true
+					},
+					{	// Copy fonts.
+						cwd: '<%= config.src %>/',
+						src: ['bower_components/fontawesome/fonts/*'],
+						dest: '<%= config.dest %>/fonts/',
+						expand: true,
+						flatten: true
 					}
 				]
+			}
+		},
+		
+		concat: {
+			dist: {
+				src: [
+					'<%= config.src %>/js/controllers.js',
+					'<%= config.src %>/js/filters.js'
+				],
+				dest: '<%= config.dest %>/js/app.js'
 			}
 		},
 
 		sass: {
 			dist: {
-				files: [{
-					cwd: 'Source/',
-					src: ['sass/*.scss'],
-					dest: 'Deploy/css',
-					ext: '.css',
-					expand: true,
-					flatten: true
-				}]
+				files: [
+					{	// Compile SCSS.
+						cwd: '<%= config.src %>/',
+						src: [
+							'bower_components/fontawesome/scss/font-awesome.scss',
+							'sass/*.scss'
+						],
+						dest: '<%= config.dest %>/css/',
+						ext: '.css',
+						expand: true,
+						flatten: true
+					}
+				]
 			}
 		},
 		
@@ -49,15 +81,15 @@ module.exports = function(grunt) {
 			},
 			
 			scripts: {
-				files: ['Source/js/*', 'Source/*.html'],
-				tasks: ['copy'],
+				files: ['<%= config.src %>/js/*', '<%= config.src %>/*.html'],
+				tasks: ['copy', 'concat'],
 				options: {
 					spawn: false
 				}
 			},
 			
 			css: {
-				files: ['Source/sass/*'],
+				files: ['<%= config.src %>/sass/*'],
 				tasks: ['sass'],
 				options: {
 					spawn: false
@@ -66,10 +98,12 @@ module.exports = function(grunt) {
 		}
 	});
 	
+	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	
-	grunt.registerTask('default', ['copy', 'sass']);
+	grunt.registerTask('default', ['clean', 'concat', 'copy', 'sass', 'watch']);
 		
 }
