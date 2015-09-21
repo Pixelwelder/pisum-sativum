@@ -12,7 +12,7 @@ $dev: true;
 
 // Variables
 $md: 768px;
-$lg: 1024px;
+$max-width: 768px;
 $header-height: 50px;
 
 // Globals
@@ -30,6 +30,10 @@ ul {
   display: inline-block;
 }
 
+li {
+  padding: 3px 0;
+}
+
 // Header
 header {
   position: fixed;
@@ -40,7 +44,7 @@ header {
   background: white;
 
   h1 {
-    max-width: $lg;
+    max-width: $max-width;
     line-height: $header-height;
     margin-left: auto;
     margin-right: auto;
@@ -52,40 +56,44 @@ header {
 // Container
 .container {
   padding: $header-height 10px 0 10px;
-  max-width: $lg;
+  max-width: $max-width;
   margin-left: auto;
   margin-right: auto;
 }
 
 // ItemRenderers
 .item-renderer {
-  background: #e0f2be;
+  background: #eeeeee;
   padding: 10px;
   margin: 5px 0;
-  transition: 0.5s;
+
+  // Transition.
+  transition: max-height 0.25s ease-out;
+  max-height: 500px;
 
   .max-toggle {
     cursor: pointer;
+    float: left;
+    font-size: 1.25em;
   }
 
   .employee-name {
+    cursor: pointer;
     font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .minimizable {
+    display: none;
+  }
+
+  .min-phone {
+    float: right;
+    margin: 3px;
   }
 
   &.minimized {
-
-    .employee-address {
-      display: none;
-      transition: opacity 0.5s ease-in;
-    }
-
-    .employee-phone {
-      display: none;
-    }
-
-    .employee-website {
-      display: none;
-    }
+    max-height: 50px;
   }
 }
 

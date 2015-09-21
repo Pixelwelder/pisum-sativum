@@ -15,19 +15,20 @@
         </header>
 
         <section class="container" ng-controller="DirectoryController">
-            <div class="item-renderer minimized" ng-class="status" ng-repeat="employee in model" ng-cloak>
-                <div style="float:left;"><i class="max-toggle fa fa-plus" ng-click="toggle($event)"></i></div>
+            <div class="item-renderer minimized" ng-class="status" ng-repeat="employee in model" ng-cloak ng-click="toggle($event)">
+                <i class="min-phone fa fa-phone" ng-show="employee.phone"></i>
+                <div class="max-toggle"><i class="fa fa-plus-square" ng-click="toggle($event)"></i></div>
                 <ul class="fa-ul">
-                    <li class="employee-name"><i class="fa fa-li fa-user"></i>{{::employee.name}} <i class="min-phone fa fa-phone" ng-show="employee.phone"></i></li>
+                    <li class="employee-name" ng-click="toggle($event)"><i class="fa fa-li fa-user"></i>{{::employee.name}} </li>
                     <li class="employee-email"><i class="fa fa-li fa-envelope"></i> <a href="mailto:{{::employee.email}}">{{::employee.email}}</a></li>
-                    <li class="employee-address">
+                    <li class="employee-address minimizable">
                         <i class="fa fa-li fa-home"></i>
                         {{::employee.address.street}}<br/>
                         {{::employee.address.suite}}<br/>
                         {{::employee.address.city}}, {{employee.address.state}} {{employee.address.zipcode | zipcode}}
                     </li>
-                    <li class="employee-phone" ng-show="employee.phone"><i class="fa fa-li fa-phone"></i>{{::employee.phone | phone}}</li>
-                    <li class="employee-website" ng-show="employee.website"><i class="fa fa-li fa-link"></i><a href="http://{{::employee.website | website}}">{{::employee.website | website}}</a></li>
+                    <li class="employee-phone minimizable" ng-show="employee.phone"><i class="fa fa-li fa-phone"></i>{{::employee.phone | phone}}</li>
+                    <li class="employee-website minimizable" ng-show="employee.website"><i class="fa fa-li fa-external-link"></i><a href="http://{{::employee.website | website}}">{{::employee.website | website}}</a></li>
                 </ul>
             </div>
         </section>

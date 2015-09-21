@@ -2,16 +2,25 @@
  * Created by Zack Jordan on 9/21/15.
  */
 // Allow multiple employee views to be in the 'maximized' state.
-var allowMultipleSelection = true;
+var allowMultipleSelection = false;
+var maximizeClass = 'fa-plus-square';
+var minimizeClass = 'fa-minus-square';
 var $currentSelection;
+var lg = 768;
 function toggle($event){
+
+    // Ignore clicks on the main item renderer if we're on desktop.
+    if (
+        ($($event.currentTarget).hasClass('item-renderer') && $(window).width() > lg) ||
+        (!$($event.currentTarget).hasClass('item-renderer') && $(window).width() <= lg)
+    ) return;
 
     $target = $($event.currentTarget).closest('.item-renderer');
 
+    // Toggle the minimized/maximized state, but take the multiple selection setting into account.
     if (!$target.hasClass('minimized')){
         minimize($target);
     } else {
-        // It's minimized; maximize it.
         if ($currentSelection){
             if (!allowMultipleSelection) {
                 minimize($currentSelection);
@@ -25,13 +34,17 @@ function toggle($event){
 
     function minimize($target){
         $target.addClass('minimized');
-        $target.find('.max-toggle').removeClass('fa-minus').addClass('fa-plus');
+        $target.find('.max-toggle i').removeClass(minimizeClass).addClass(maximizeClass);
+
+        $target.find('.minimizable').fadeOut();
     }
 
     function maximize($target){
         $currentSelection = $target;
         $currentSelection.removeClass('minimized');
-        $currentSelection.find('.max-toggle').removeClass('fa-plus').addClass('fa-minus');
+        $currentSelection.find('.max-toggle i').removeClass(maximizeClass).addClass(minimizeClass);
+
+        $currentSelection.find('.minimizable').fadeIn();
     }
 }
 
@@ -60,6 +73,7 @@ function formatPhone(input){
     return num + ' ' + ext;
 }
 
+// Returns zip+4.
 function formatZipcode(input){
     if (!input) return '';
 
@@ -73,6 +87,7 @@ function formatZipcode(input){
     return output;
 }
 
+// Removes any protocol from the front of a URL.
 function formatWebsite(input){
     if (!input) return '';
 
