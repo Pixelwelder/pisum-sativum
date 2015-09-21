@@ -24,7 +24,8 @@ module.exports = function(grunt) {
 						src: [
 							'**/*min.js', '!**/*sizzle*', 
 							'**/angular.js', // TODO Remove for production.
-							'js/model.js' // TODO Remove.
+							'js/model.js', // TODO Remove.
+							'js/core.js', // TODO Remove.
 						],
 						dest: '<%= config.dest %>/js/',
 						expand: true,
