@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Employee Directory</title>
 
-        <!-- TODO Concatenate/minify CSS. -->
+        <!-- TODO Minify CSS. -->
         <link rel="stylesheet" type="text/css" href="css/app.css" media="screen">
         <link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="screen">
     </head>
@@ -15,17 +15,20 @@
         </header>
 
         <section class="container" ng-controller="DirectoryController">
-            <div class="item-renderer minimized" ng-repeat="employee in model">
-                <h2 class="employee-name">{{employee.name}}</h2>
-                <i class="fa fa-phone"></i>
-                <p class="employee-email"><a href="mailto:{{employee.email}}">{{employee.email}}</a></p>
-                <p class="employee-address">
-					{{employee.address.street}}<br/>
-					{{employee.address.suite}}<br/>
-					{{employee.address.city}}, {{employee.address.state}} {{employee.address.zipcode | zipcode}}
-				</p>
-                <p class="employee-phone">{{employee.phone | phone}}</p>
-                <p class="employee-website"><a href="http://{{employee.website | website}}">{{employee.website | website}}</a></p>
+            <div class="item-renderer minimized" ng-class="status" ng-repeat="employee in model" ng-cloak>
+                <div style="float:left;"><i class="max-toggle fa fa-plus" ng-click="toggle($event)"></i></div>
+                <ul class="fa-ul">
+                    <li class="employee-name"><i class="fa fa-li fa-user"></i>{{::employee.name}} <i class="min-phone fa fa-phone" ng-show="employee.phone"></i></li>
+                    <li class="employee-email"><i class="fa fa-li fa-envelope"></i> <a href="mailto:{{::employee.email}}">{{::employee.email}}</a></li>
+                    <li class="employee-address">
+                        <i class="fa fa-li fa-home"></i>
+                        {{::employee.address.street}}<br/>
+                        {{::employee.address.suite}}<br/>
+                        {{::employee.address.city}}, {{employee.address.state}} {{employee.address.zipcode | zipcode}}
+                    </li>
+                    <li class="employee-phone" ng-show="employee.phone"><i class="fa fa-li fa-phone"></i>{{::employee.phone | phone}}</li>
+                    <li class="employee-website" ng-show="employee.website"><i class="fa fa-li fa-link"></i><a href="http://{{::employee.website | website}}">{{::employee.website | website}}</a></li>
+                </ul>
             </div>
         </section>
 
@@ -33,7 +36,7 @@
 
         </footer>
 
-        <!-- TODO Concatenate/minify JS. -->
+        <!-- TODO Minify JS. -->
         <script src="js/jquery.min.js"></script>
         <script src="js/angular.js"></script>
 

@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 					},
 					{	// Copy fonts.
 						cwd: '<%= config.src %>/',
-						src: ['bower_components/fontawesome/fonts/*'],
+						src: ['bower_components/fontawesome/fonts/*', 'fonts/*'],
 						dest: '<%= config.dest %>/fonts/',
 						expand: true,
 						flatten: true
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
 			},
 			
 			css: {
-				files: ['<%= config.src %>/sass/*'],
+				files: ['<%= config.src %>/sass/**'],
 				tasks: ['sass'],
 				options: {
 					spawn: false

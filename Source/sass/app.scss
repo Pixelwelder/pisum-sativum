@@ -1,11 +1,82 @@
 /* CodingTest */
+@import 'partials/reset';
+@import 'partials/fonts';
+
+$dev: true;
+
+@if $dev {
+  html * {
+    //border: 1px dashed red;
+  }
+}
+
+// Variables
+$md: 768px;
+$lg: 1024px;
+$header-height: 50px;
+
+// Globals
+html * {
+  font-size: 1em;
+  font-family: 'robotoregular';
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+ul {
+  display: inline-block;
+}
+
+// Header
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+
+  height: $header-height;
+  background: white;
+
+  h1 {
+    max-width: $lg;
+    line-height: $header-height;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+// Container
+.container {
+  padding: $header-height 10px 0 10px;
+  max-width: $lg;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 // ItemRenderers
 .item-renderer {
+  background: #e0f2be;
+  padding: 10px;
+  margin: 5px 0;
+  transition: 0.5s;
+
+  .max-toggle {
+    cursor: pointer;
+  }
+
+  .employee-name {
+    font-weight: 700;
+  }
+
   &.minimized {
 
     .employee-address {
       display: none;
+      transition: opacity 0.5s ease-in;
     }
 
     .employee-phone {
@@ -15,5 +86,24 @@
     .employee-website {
       display: none;
     }
+  }
+}
+
+// Other
+
+// Responsive
+// TODO Consider checking for tablets in landscape.
+@media all and (min-width: $md){
+  header {
+    position: relative;
+    width: auto;
+
+    h1 {
+      font-size: 2.25em;
+    }
+  }
+
+  .container {
+    padding-top: 0px;
   }
 }
