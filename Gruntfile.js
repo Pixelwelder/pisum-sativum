@@ -106,5 +106,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	
 	grunt.registerTask('default', ['clean', 'concat', 'copy', 'sass', 'watch']);
+	grunt.registerTask('compile', ['clean', 'concat', 'copy', 'sass']);
 		
 }
