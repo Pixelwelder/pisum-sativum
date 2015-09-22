@@ -1,6 +1,7 @@
 /* CodingTest */
 @import 'partials/reset';
 @import 'partials/fonts';
+@import 'partials/mixins';
 
 $dev: true;
 
@@ -18,7 +19,7 @@ $side-padding: 10px;
 
 // Globals
 html * {
-  font-size: 1em;
+  font-size: 0.9rem;
   font-family: 'robotoregular';
 }
 
@@ -89,8 +90,8 @@ header {
   }
 
   .min-phone {
+    margin-top: 3px;
     float: right;
-    margin: 3px;
   }
 
   &.minimized {
@@ -99,6 +100,14 @@ header {
 }
 
 // Other
+.ellipsis {
+  max-width: 200px;
+  @include ellipsis();
+}
+
+.word-wrap {
+  @include word-wrap;
+}
 
 // Responsive
 // TODO Consider checking for tablets in landscape.
