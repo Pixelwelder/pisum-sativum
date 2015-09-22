@@ -14,6 +14,7 @@ $dev: true;
 $md: 768px;
 $max-width: 768px;
 $header-height: 50px;
+$side-padding: 10px;
 
 // Globals
 html * {
@@ -48,14 +49,14 @@ header {
     line-height: $header-height;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: $side-padding;
+    padding-right: $side-padding;
   }
 }
 
 // Container
 .container {
-  padding: $header-height 10px 0 10px;
+  padding: $header-height $side-padding 0;
   max-width: $max-width;
   margin-left: auto;
   margin-right: auto;
@@ -64,7 +65,7 @@ header {
 // ItemRenderers
 .item-renderer {
   background: #eeeeee;
-  padding: 10px;
+  padding: 10px $side-padding;
   margin: 5px 0;
 
   // Transition.

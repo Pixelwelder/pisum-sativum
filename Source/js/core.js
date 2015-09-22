@@ -5,8 +5,9 @@
 var allowMultipleSelection = false;
 var maximizeClass = 'fa-plus-square';
 var minimizeClass = 'fa-minus-square';
-var $currentSelection;
 var lg = 768;
+
+var $currentSelection;
 function toggle($event){
 
     // Ignore clicks on the main item renderer if we're on desktop.
